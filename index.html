@@ -30,11 +30,19 @@
     }
 
     function game() {
-      let playerScore, computerScore = 0;
+      let playerScore = 0;
+      let computerScore = 0;
 
-      for (let i = 1; i < 5; i++) {
+      for (let i = 0; i < 5; i++) {
         let playerSelection = prompt("Choose Rock, Paper, or Scissors: ");
         playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+
+        while ((playerSelection != 'Rock') && (playerSelection != 'Paper') &&  (playerSelection != 'Scissors')) {
+          playerSelection = prompt("Invalid selection. Choose Rock, Paper, or Scissors: ");
+          playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+        }
+
+
         let computerSelection = computerPlay();
 
         let result = playRound(playerSelection, computerSelection);
@@ -50,8 +58,9 @@
           computerScore++;
           console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
         }
-
-        console.log(result);
+        else {
+          console.log('Something went wrong!');
+        }
       }
 
       if (playerScore > computerScore) {
@@ -65,9 +74,7 @@
       }
     }
 
-    while (true) {
-      game();
-    }
+    game();
   </script>
 </body>
 </html>

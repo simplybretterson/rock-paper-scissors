@@ -5,9 +5,69 @@
 </head>
 <body>
   <script>
- 	  // Your JavaScript goes here!
-    let a = 10;
-    console.log();
+ 	  // Rock Paper Scissors!
+    function computerPlay() {
+      let roll = Math.random()*3;
+
+      if (roll > 2) return 'Rock';
+      if (roll > 1) return 'Paper';
+      return 'Scissors';
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      if (playerSelection === computerSelection) {
+        return 0;
+      }
+      else {
+        if (playerSelection == 'Rock' && computerSelection == 'Scissors' ||
+          playerSelection == 'Scissors' && computerSelection == 'Paper' ||
+          playerSelection == 'Paper' && computerSelection == 'Rock')
+        {
+          return 1;
+        }
+        return -1;
+      }
+    }
+
+    function game() {
+      let playerScore, computerScore = 0;
+
+      for (let i = 1; i < 5; i++) {
+        let playerSelection = prompt("Choose Rock, Paper, or Scissors: ");
+        playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+        let computerSelection = computerPlay();
+
+        let result = playRound(playerSelection, computerSelection);
+
+        if (result == 0) {
+          console.log(`It's a tie! You both chose ${playerSelection}.`)
+        }
+        else if (result == 1) {
+          playerScore++;
+          console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
+        }
+        else if (result == -1) {
+          computerScore++;
+          console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+        }
+
+        console.log(result);
+      }
+
+      if (playerScore > computerScore) {
+        console.log(`You won the game! You: ${playerScore}, Computer: ${computerScore}`)
+      }
+      else if (computerScore > playerScore) {
+        console.log(`You lost the game! You: ${playerScore}, Computer: ${computerScore}`)
+      }
+      else {
+        console.log(`The game is a tie! You: ${playerScore}, Computer: ${computerScore}`)
+      }
+    }
+
+    while (true) {
+      game();
+    }
   </script>
 </body>
 </html>

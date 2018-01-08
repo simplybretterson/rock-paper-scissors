@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #222;
+  color: #eee;
+}
+
+p {
+  color: #ccc;
+}
+
+#main {
+  display: grid;
+  width: 100%;
+  min-height: 500px;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+}
+
+#center {
+  grid-column: 2;
+  grid-row: 2;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}

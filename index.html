@@ -2,79 +2,27 @@
 <html>
 <head>
   <title>RPS</title>
+  <link type="text/css" rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <script>
- 	  // Rock Paper Scissors!
-    function computerPlay() {
-      let roll = Math.random()*3;
+  <div id="main">
+    <div id="center">
+      <h1>Rock Paper Scissors!</h1>
 
-      if (roll > 2) return 'Rock';
-      if (roll > 1) return 'Paper';
-      return 'Scissors';
-    }
+      <p id="p-round">Press Start to begin</p>
 
-    function playRound(playerSelection, computerSelection) {
-      if (playerSelection === computerSelection) {
-        return 0;
-      }
-      else {
-        if (playerSelection == 'Rock' && computerSelection == 'Scissors' ||
-          playerSelection == 'Scissors' && computerSelection == 'Paper' ||
-          playerSelection == 'Paper' && computerSelection == 'Rock')
-        {
-          return 1;
-        }
-        return -1;
-      }
-    }
+      <h2 id="player-score">Your score: 0</h3>
+      <h2 id="computer-score">Computer's score: 0</h3>
 
-    function game() {
-      let playerScore = 0;
-      let computerScore = 0;
+      <p id="p-results">A battle is surely brewing...</p>
 
-      for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Choose Rock, Paper, or Scissors: ");
-        playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+      <button class="hidden" id="button-rock">Rock</button>
+      <button class="hidden" id="button-paper">Paper</button>
+      <button class="hidden" id="button-scissors">Scissors</button>
 
-        while ((playerSelection != 'Rock') && (playerSelection != 'Paper') &&  (playerSelection != 'Scissors')) {
-          playerSelection = prompt("Invalid selection. Choose Rock, Paper, or Scissors: ");
-          playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
-        }
-
-
-        let computerSelection = computerPlay();
-
-        let result = playRound(playerSelection, computerSelection);
-
-        if (result == 0) {
-          console.log(`It's a tie! You both chose ${playerSelection}.`)
-        }
-        else if (result == 1) {
-          playerScore++;
-          console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
-        }
-        else if (result == -1) {
-          computerScore++;
-          console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
-        }
-        else {
-          console.log('Something went wrong!');
-        }
-      }
-
-      if (playerScore > computerScore) {
-        console.log(`You won the game! You: ${playerScore}, Computer: ${computerScore}`)
-      }
-      else if (computerScore > playerScore) {
-        console.log(`You lost the game! You: ${playerScore}, Computer: ${computerScore}`)
-      }
-      else {
-        console.log(`The game is a tie! You: ${playerScore}, Computer: ${computerScore}`)
-      }
-    }
-
-    game();
-  </script>
+      <button id="button-start">Start!</button>
+    </div>
+  </div>
 </body>
+<script type="text/javascript" src="script.js"></script>
 </html>
